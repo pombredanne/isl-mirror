@@ -1202,6 +1202,25 @@ struct isl_union_access_info {
 
 /* Free "access" and return NULL.
  */
+__isl_give isl_union_access_info *isl_union_access_info_copy(__isl_keep isl_union_access_info *access)
+{
+	isl_ctx *ctx;
+	struct isl_union_access_info *dup;
+
+	if (!access)
+		return NULL;
+
+	ctx = isl_union_access_info_get_ctx(access);
+	dup = isl_alloc_type(ctx, isl_union_access_info);
+	if (!dup)
+		return NULL;
+
+	if (!dup->sink || !dup->must_source ||
+	    !dup->may_source || !dup->schedule)
+		return isl_union_access_info_free(dup);
+	return dup;
+}
+
 __isl_null isl_union_access_info *isl_union_access_info_free(
 	__isl_take isl_union_access_info *access)
 {

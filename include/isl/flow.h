@@ -69,6 +69,8 @@ typedef struct isl_union_access_info isl_union_access_info;
 struct isl_union_flow;
 typedef struct isl_union_flow isl_union_flow;
 
+isl_ctx *isl_union_access_info_get_ctx(__isl_keep isl_union_access_info *access);
+__isl_give isl_union_access_info *isl_union_access_info_copy(__isl_keep isl_union_access_info *access);
 __isl_give isl_union_access_info *isl_union_access_info_from_sink(
 	__isl_take isl_union_map *sink);
 __isl_give isl_union_access_info *isl_union_access_info_set_must_source(
